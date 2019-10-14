@@ -672,7 +672,20 @@ class Game {
         this._camera = camera;
     }
     setupShapes() {
-        let ground = BABYLON.MeshBuilder.CreateGround('ground', { width: 6, height: 6, subdivisions: 2 }, this._scene);
+        let ground = BABYLON.MeshBuilder.CreateBox('ground', {
+            width: 6,
+            height: 1.5,
+            depth: 6,
+            faceUV: [
+                new BABYLON.Vector4(0, 0, 0, 0),
+                new BABYLON.Vector4(0, 0, 0, 0),
+                new BABYLON.Vector4(0, 0, 0, 0),
+                new BABYLON.Vector4(0, 0, 0, 0),
+                new BABYLON.Vector4(0, 0, 1, 1),
+                new BABYLON.Vector4(0, 0, 0, 0),
+            ],
+        }, this._scene);
+        ground.position.y = -0.75;
         const material = new BABYLON.StandardMaterial("myMaterial", this._scene);
         const texture = new BABYLON.Texture(grass32x32_png_1.default, this._scene, true, false, BABYLON.Texture.NEAREST_LINEAR);
         texture.uScale = 8;
